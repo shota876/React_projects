@@ -1,10 +1,20 @@
-export default function Modal({id, header, body, footer}){
+
+interface ModalProps {
+    id?: string;
+    header?: React.ReactNode;
+    body?: React.ReactNode;
+    footer?: React.ReactNode;
+    onClose: () => void;
+}
+
+
+const Modal: React.FC<ModalProps> = ({id, header, body, footer, onClose}) => {
     return (
        <>
             <div id={id || 'modal'} className="modal">
                 <div className="moda-content">
                     <div className="header">
-                        <span className="close-modal-icon">&items;</span>
+                        <span onClick={onClose} className="close-modal-icon">X</span>
                         <h2>{header ? header : 'Header'}</h2>
                     </div>
                     <div className="body">
@@ -18,3 +28,5 @@ export default function Modal({id, header, body, footer}){
        </> 
     )
 }
+
+export default Modal
